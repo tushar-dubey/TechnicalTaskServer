@@ -5,9 +5,15 @@ env: GO111MODULE=on
 go:
   - '1.13.x'
 
-before_script:
-  - apt install protobuf-compiler
+before_install:
+  - mkdir "${HOME}/go"; export GOPATH="${HOME}/go";
+
+
+install:
+  - go mod download
+  - ./install_protoc.sh
   - ./generatepb.sh
 
 script:
-  - go test -v ./calculator/server/...
+  - make test
+  - make build
