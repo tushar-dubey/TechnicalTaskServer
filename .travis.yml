@@ -13,8 +13,7 @@ before_install:
 
 install:
   - go mod download
-  - sudo apt install protobuf-compiler
-#  - ./install_protoc.sh
+  - ./install_protoc.sh
   - ./generatepb.sh
 
 script:
