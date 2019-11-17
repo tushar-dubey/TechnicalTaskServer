@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package calculator;
+option go_package = "proto";
+
+
+message SumRequest {
+    int64 int1 = 1;
+    int64 int2 = 2;
+}
+
+message SumResponse {
+    int64 result = 1;
+}
+
+message SubtractRequest {
+    int64 int1 = 1;
+    int64 int2 = 2;
+}
+
+message SubtractResponse {
+    int64 result = 1;
+}
+
+service CalculatorService{
+
+    rpc SumIntegers(SumRequest) returns (SumResponse) {};
+    rpc SubtractIntegers(SubtractRequest) returns (SubtractResponse) {};
+}
