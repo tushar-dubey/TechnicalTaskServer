@@ -7,6 +7,8 @@ go:
 
 before_install:
   - mkdir "${HOME}/go"; export GOPATH="${HOME}/go";
+  - chmod +x install_protoc.sh
+  - chmod +x generatepb.sh
 
 
 install:
