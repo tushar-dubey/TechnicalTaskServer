@@ -6,5 +6,6 @@ pushd /home/travis
 wget https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/${PROTOC_FILENAME}
 unzip ${PROTOC_FILENAME}
 bin/protoc --version
+chmod +x bin/protoc
 popd
 PATH="/home/travis/bin:${PATH}"
