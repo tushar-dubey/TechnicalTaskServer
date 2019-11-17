@@ -1,0 +1,10 @@
+language: go
+
+env: GO111MODULE=on
+
+before_script:
+  - dep ensure
+  - ./generatepb.sh
+
+script:
+  - go test -v ./...
