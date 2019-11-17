@@ -9,11 +9,11 @@ before_install:
   - mkdir "${HOME}/go"; export GOPATH="${HOME}/go";
   - chmod +x install_protoc.sh
   - chmod +x generatepb.sh
+  - ./install_protoc.sh
 
 
 install:
   - go mod download
-  - ./install_protoc.sh
   - ./generatepb.sh
 
 script:
