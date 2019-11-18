@@ -14,13 +14,10 @@ install:
   - curl -L https://github.com/google/protobuf/releases/download/v3.3.0/protoc-3.3.0-linux-x86_64.zip -o /tmp/protoc.zip
   - unzip /tmp/protoc.zip -d "$HOME"/protoc
   - mkdir -p "$HOME"/src && ln -s "$HOME"/protoc "$HOME"/src/protobuf
-  - protoc --version
-  - pwd
-  - ./generatepb.sh
+  - protoc calculator/proto/calculator.proto --go_out=plugins=grpc:.
 
 env:
-  global:
-    - PATH=$HOME/protoc/bin:$PATH;GO111MODULE=on
+  - PATH=$HOME/protoc/bin:$PATH;GO111MODULE=on
 
 script:
   - make test
