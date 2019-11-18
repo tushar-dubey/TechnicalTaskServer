@@ -1,20 +1,24 @@
 language: go
 
-env: GO111MODULE=on
-
 go:
   - '1.13.x'
 
 before_install:
   - mkdir "${HOME}/go"; export GOPATH="${HOME}/go";
-  - chmod +x install_protoc.sh
   - chmod +x generatepb.sh
-  - ./install_protoc.sh
 
 
 install:
   - go mod download
+  - go get -v -d -t github.com/golang/protobuf/...
+  - curl -L https://github.com/google/protobuf/releases/download/v3.3.0/protoc-3.3.0-linux-x86_64.zip -o /tmp/protoc.zip
+  - unzip /tmp/protoc.zip -d "$HOME"/protoc
+  - mkdir -p "$HOME"/src && ln -s "$HOME"/protoc "$HOME"/src/protobuf
   - ./generatepb.sh
+
+env:
+  - PATH=$HOME/protoc/bin:$PATH
+  - GO111MODULE=on
 
 script:
   - make test
